@@ -1,0 +1,5 @@
+persisted-data/
+.env
+esn/ticketing08000linux.backend
+assets/https-cert/*[.pem, .csr, .crt, .key]
+assets/jwt-keys/*[.pem, .csr, .crt, .key]

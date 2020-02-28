@@ -1,0 +1,178 @@
+version: '3.7'
+
+volumes:
+  mongodb01:
+    driver: local
+  elasticsearch01:
+    driver: local
+  ldap01:
+    driver: local
+  ldap02:
+    driver: local
+  rabbitmq01:
+    driver: local
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.99.0.0/16
+
+services:
+
+  reverse-proxy:
+    image: traefik:1.7-alpine
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./assets/conf/traefik/traefik.toml:/etc/traefik/traefik.toml:ro
+
+  docker-socket:
+    image: tecnativa/docker-socket-proxy
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - CONTAINERS=1
+
+  mongodb:
+    image: mongo:3.2
+    restart: always
+    command: mongod --smallfiles
+    volumes:
+      - mongodb01:/data/db
+
+  ldap:
+    image: docker-registry.linagora.com:5000/demo-snapshots/openpaas-ldap-demo:latest
+    tty: true
+    stdin_open: true
+    command: --copy-service --loglevel debug
+    volumes:
+      - ldap01:/var/lib/ldap
+      - ldap02:/etc/ldap/slapd.d
+
+  redis:
+    image: redis:5.0.1-stretch
+
+  rabbitmq:
+    image: rabbitmq:3.6.5-management
+    volumes:
+      - rabbitmq01:/var/lib/rabbitmq
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+    restart: always
+    volumes:
+      - elasticsearch01:/usr/share/elasticsearch/data
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - ELASTICSEARCH_INIT_TIMEOUT=120
+      - CLUSTER_NAME=openpaas
+      - HTTP_ENABLE=false
+      - NODE_MASTER=true
+      - NETWORK_HOST=0.0.0.0
+      - NODE_DATA=true
+
+  08000-frontend:
+    image: docker-registry.linagora.com:5000/lps-releases/ticketing08000linux:0.0.5
+    restart: always
+    volumes:
+      - ./assets/conf/08000-frontend/openpaas.js:/var/www/ticketing/env/openpaas.js
+    depends_on:
+      - mongodb
+      - esn
+    labels:
+      - "traefik.enable=true"
+      - "traefik.openpaas.frontend.rule=Host:frontend.ticketing.local"
+
+  esn:
+    restart: always
+    build: ./esn
+    healthcheck:
+      test: ["CMD", "curl", "-s", "-f", "http://localhost:8080/api/monitoring"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    volumes:
+      - ./assets/conf/esn/provision.sh:/var/www/docker/scripts/provision.sh
+      - ./assets/jwt-keys/private.pem:/var/www/docker/config/jwt/private
+      - ./assets/jwt-keys/public.pem:/var/www/docker/config/jwt/public
+      - ./assets/conf/esn/default.production.json:/var/www/config/default.production.json
+    depends_on:
+      - mongodb
+      - elasticsearch
+      - rabbitmq
+    environment:
+      - DOCKER_IP=127.0.0.1
+      - GENERATE_DB_CONFIG_FROM_ENV=true
+      - PROVISION=true
+      - CONFIG_DIR=/var/www/docker/config
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=27017
+      - MONGO_DBNAME=esn_docker
+      - MONGO_TIMEOUT=100000
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - AMQP_HOST=rabbitmq
+      - AMQP_PORT=5672
+      - AMQP_PROTOCOL=amqp
+      - AMQP_USERNAME=guest
+      - AMQP_PASSWORD=guest
+      - WEB_HOST=backend.ticketing.local
+      - WEB_PORT=
+      - ELASTICSEARCH_HOST=elasticsearch
+      - ELASTICSEARCH_PORT=9200
+      - ELASTICSEARCH_INIT_TIMEOUT=120
+      - MAIL_BROWSER=false
+    labels:
+      - "traefik.enable=true"
+      - "traefik.openpaas.frontend.rule=Host:backend.ticketing.local"
+
+  esn-init:
+    image: docker-registry.linagora.com:5000/openpaas-releases/openpaas-esncli:1.2
+    environment:
+      - ESN_CLI_PASSWORD=secret
+      - ESN_CLI_LOGIN=admin@open-paas.org
+      - ESN_CLI_URL=http://esn:8080
+      - ESN_HOST=esn
+      - ESN_PORT=8080
+      - LDAP_CONNECTION_URI=ldap://obm3-ui.linagora.dc2:389
+      - LDAP_SEARCH_BASE=ou=users,dc=linagora.com,dc=lng
+      - OPENPAAS_BIND_DN=
+      - OPENPAAS_BIND_PW=
+      - WAITFORIT_TIMEOUT=120
+    volumes:
+      - ./assets/conf/esn-init/init.esn.sh:/init.esn.sh
+    command: /init.esn.sh
+    depends_on:
+      - esn
+
+  ldap-init:
+    image: docker-registry.linagora.com:5000/openpaas-releases/openpaas-ldap-init:1.2.2
+    # build: ../openpaas-ldap-init-dockerfile
+    depends_on:
+      - ldap
+    environment:
+      # init config for dev (you must override them in every mode)
+      - LDAP_HOST=ldap
+      - LDAP_PORT=389
+      - LDAP_BIND_PW=adminopenpaas
+      # lemonldap config for dev (you must override them in every mode)
+      - TEMPLATE_LDAP_BIND_DN=cn=lemonldap,ou=accounts,dc=openpaas,dc=org
+      - TEMPLATE_LDAP_BIND_PW=adminopenpaas
+      - TEMPLATE_LDAP_URI=ldap://ldap:389
+      # lemonldap config for dev (no need to override them in production mode)
+      - OPENPAAS_BIND_DN=cn=openpaas,ou=accounts,dc=openpaas,dc=org
+      - OPENPAAS_BIND_PW=openpaas
+      - LINSHARE_BIND_DN=cn=linshare,ou=accounts,dc=openpaas,dc=org
+      - LINSHARE_BIND_PW=linshare
+      - LOAD_USERS=1
+      - DEBUG=0
+    volumes:
+      - ./assets/conf/ldap-init/users.ldif:/linagora/data/ldifs/custom/users.ldif
+    

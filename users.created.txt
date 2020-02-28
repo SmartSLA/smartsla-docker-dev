@@ -1,0 +1,45 @@
+Generated users:
+
+ * Abbey CURRY:
+    login:    abbey.curry@open-paas.org
+    password: eep7eese4YaH
+
+ * Amy WOLSH:
+    login:    amy.wolsh@open-paas.org
+    password: eeX4oi4pee9o
+
+ * Anderson WAXMAN:
+    login:    anderson.waxman@open-paas.org
+    password: pheiH9eepee3
+
+ * Cornell ABLE:
+    login:    cornell.able@open-paas.org
+    password: ba9Phaej3phe
+
+ * Dawson WATERFIELD:
+    login:    dawson.waterfield@open-paas.org
+    password: Vub9zuzae4gu
+
+ * Felton GUMPER:
+    login:    felton.gumper@open-paas.org
+    password: thaedah3haec
+
+ * Grant BIG:
+    login:    grant.big@open-paas.org
+    password: zoo9eezae9Ah
+
+ * Nick DERBIES:
+    login:    nick.derbies@open-paas.org
+    password: aeng4pahyeiF
+
+ * Peter WILSON:
+    login:    peter.wilson@open-paas.org
+    password: ooxuF4ezei9i
+
+ * Walker MCCALLISTER:
+    login:    walker.mccallister@open-paas.org
+    password: ox9aeth9aeW4
+
+
+Users can login using their email.
+
