@@ -1,0 +1,151 @@
+
+dn: uid=abbey.curry,ou=users,dc=openpaas,dc=org
+changetype: add
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: abbey.curry
+cn: CURRY, Abbey
+mail: abbey.curry@open-paas.org
+sn: CURRY
+givenName: Abbey
+userPassword: {SHA}P3M95gvhsexXQGRzOMFRZDM69ZQ=
+employeeType: Internal
+o: open-paas.org
+mobile:0645566666
+
+dn: uid=amy.wolsh,ou=users,dc=openpaas,dc=org
+changetype: add
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: amy.wolsh
+cn: WOLSH, Amy
+mail: amy.wolsh@open-paas.org
+sn: WOLSH
+givenName: Amy
+userPassword: {SHA}IIEvgL/u1NogagN37PEV40XhrgI=
+employeeType: Internal
+o: open-paas.org
+
+dn: uid=anderson.waxman,ou=users,dc=openpaas,dc=org
+changetype: add
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: anderson.waxman
+cn: WAXMAN, Anderson
+mail: anderson.waxman@open-paas.org
+sn: WAXMAN
+givenName: Anderson
+userPassword: {SHA}5/wnc3RZ/ghrkJZKIstBfOV+Nw0=
+employeeType: Internal
+o: open-paas.org
+
+dn: uid=cornell.able,ou=users,dc=openpaas,dc=org
+changetype: add
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: cornell.able
+cn: ABLE, Cornell
+mail: cornell.able@open-paas.org
+sn: ABLE
+givenName: Cornell
+userPassword: {SHA}Aa+9jm2ydaDo3qgQ7pyhkz9iXf8=
+employeeType: Internal
+o: open-paas.org
+
+dn: uid=dawson.waterfield,ou=users,dc=openpaas,dc=org
+changetype: add
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: dawson.waterfield
+cn: WATERFIELD, Dawson
+mail: dawson.waterfield@open-paas.org
+sn: WATERFIELD
+givenName: Dawson
+userPassword: {SHA}exytAM1Rm/tttZqwA3/eJPlDGFs=
+employeeType: Internal
+o: open-paas.org
+
+dn: uid=felton.gumper,ou=users,dc=openpaas,dc=org
+changetype: add
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: felton.gumper
+cn: GUMPER, Felton
+mail: felton.gumper@open-paas.org
+sn: GUMPER
+givenName: Felton
+userPassword: {SHA}negdcKkkwtzduTFBc5nrqX3aDko=
+employeeType: Internal
+o: open-paas.org
+
+dn: uid=grant.big,ou=users,dc=openpaas,dc=org
+changetype: add
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: grant.big
+cn: BIG, Grant
+mail: grant.big@open-paas.org
+sn: BIG
+givenName: Grant
+userPassword: {SHA}0eN1ZyfPmbJvMbKQvyl4gTlvuYQ=
+employeeType: Internal
+o: open-paas.org
+
+dn: uid=nick.derbies,ou=users,dc=openpaas,dc=org
+changetype: add
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: nick.derbies
+cn: DERBIES, Nick
+mail: nick.derbies@open-paas.org
+sn: DERBIES
+givenName: Nick
+userPassword: {SHA}HBloeyUJiHFgGtL3Iot7I0cuUVg=
+employeeType: Internal
+o: open-paas.org
+
+dn: uid=peter.wilson,ou=users,dc=openpaas,dc=org
+changetype: add
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: peter.wilson
+cn: WILSON, Peter
+mail: peter.wilson@open-paas.org
+sn: WILSON
+givenName: Peter
+userPassword: {SHA}k35G7U/4g7C5SKoHUccqt4L/xxc=
+employeeType: Internal
+o: open-paas.org
+
+dn: uid=walker.mccallister,ou=users,dc=openpaas,dc=org
+changetype: add
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: walker.mccallister
+cn: MCCALLISTER, Walker
+mail: walker.mccallister@open-paas.org
+sn: MCCALLISTER
+givenName: Walker
+userPassword: {SHA}y7OCxqySBPlreIDIRoMOSUTaBS0=
+employeeType: Internal
+o: open-paas.org

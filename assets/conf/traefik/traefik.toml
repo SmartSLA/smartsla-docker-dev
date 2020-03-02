@@ -1,0 +1,17 @@
+debug = false
+
+logLevel = "DEBUG"
+defaultEntryPoints = ["http"]
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+
+[api]
+
+[Docker]
+    endpoint = "tcp://docker-socket:2375"
+    domain = "ticketing.local"
+    exposedByDefault = false
+    swarmMode = false
+    watch = true
