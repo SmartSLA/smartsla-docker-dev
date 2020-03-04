@@ -134,17 +134,16 @@ services:
       - "traefik.openpaas.frontend.rule=Host:backend.ticketing.local"
 
   esn-init:
-    image: docker-registry.linagora.com:5000/openpaas-releases/openpaas-esncli:1.2
+    image: docker-registry.linagora.com:5000/openpaas-releases/openpaas-esncli:1.6
     environment:
       - ESN_CLI_PASSWORD=secret
       - ESN_CLI_LOGIN=admin@open-paas.org
       - ESN_CLI_URL=http://esn:8080
       - ESN_HOST=esn
       - ESN_PORT=8080
-      - LDAP_CONNECTION_URI=ldap://obm3-ui.linagora.dc2:389
-      - LDAP_SEARCH_BASE=ou=users,dc=linagora.com,dc=lng
-      - OPENPAAS_BIND_DN=
-      - OPENPAAS_BIND_PW=
+      - LDAP_SEARCH_BASE=ou=users,dc=openpaas,dc=org
+      - OPENPAAS_BIND_DN=cn=openpaas,ou=accounts,dc=openpaas,dc=org
+      - OPENPAAS_BIND_PW=openpaas
       - WAITFORIT_TIMEOUT=120
     volumes:
       - ./assets/conf/esn-init/init.esn.sh:/init.esn.sh
