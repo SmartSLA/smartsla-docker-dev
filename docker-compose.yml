@@ -1,3 +1,6 @@
+# vim: syntax=yaml textwidth=120 expandtab tabstop=2 softtabstop=2 shiftwidth=2 autoindent
+
+# Docker compose file for a full-featured ticketing08000linux architecture
 version: '3.7'
 
 volumes:
@@ -78,7 +81,7 @@ services:
       - NODE_DATA=true
 
   08000-frontend:
-    image: docker-registry.linagora.com:5000/lps-releases/ticketing08000linux:0.0.5
+    image: docker-registry.linagora.com:5000/lps-releases/ticketing08000linux:1.6
     restart: always
     volumes:
       - ./assets/conf/08000-frontend/openpaas.js:/var/www/ticketing/env/openpaas.js
@@ -90,8 +93,8 @@ services:
       - "traefik.openpaas.frontend.rule=Host:frontend.ticketing.local"
 
   esn:
+    image: docker-registry.linagora.com:5000/lps-releases/ticketing08000linux.backend:1.6
     restart: always
-    build: ./esn
     healthcheck:
       test: ["CMD", "curl", "-s", "-f", "http://localhost:8080/api/monitoring"]
       interval: 30s
@@ -102,7 +105,6 @@ services:
       - ./assets/conf/esn/provision.sh:/var/www/docker/scripts/provision.sh
       - ./assets/jwt-keys/private.pem:/var/www/docker/config/jwt/private
       - ./assets/jwt-keys/public.pem:/var/www/docker/config/jwt/public
-      - ./assets/conf/esn/default.production.json:/var/www/config/default.production.json
     depends_on:
       - mongodb
       - elasticsearch
@@ -132,6 +134,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.openpaas.frontend.rule=Host:backend.ticketing.local"
+      - "traefik.port=8080"
 
   esn-init:
     image: docker-registry.linagora.com:5000/openpaas-releases/openpaas-esncli:1.6
