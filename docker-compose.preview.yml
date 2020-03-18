@@ -1,0 +1,12 @@
+# vim: syntax=yaml textwidth=120 expandtab tabstop=2 softtabstop=2 shiftwidth=2 autoindent
+
+# Docker compose file for a full-featured ticketing08000linux architecture
+version: '3.7'
+
+services:
+
+  08000-frontend:
+    image: docker-registry.linagora.com:5000/lps-snapshots/ticketing08000linux:1.6
+
+  esn:
+    image: docker-registry.linagora.com:5000/lps-snapshots/ticketing08000linux.backend:1.6

@@ -1,0 +1,48 @@
+# vim: syntax=yaml textwidth=120 expandtab tabstop=2 softtabstop=2 shiftwidth=2 autoindent
+
+# Docker compose file for a full-featured ticketing08000linux architecture
+version: '3.7'
+
+services:
+
+  ldap:
+    ports:
+      - 389:389
+
+  mongodb:
+    ports:
+      - 27017:27017
+
+  rabbitmq:
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  elasticsearch:
+    ports:
+      - 9200:9200
+
+  redis:
+    ports:
+      - 6379:6379
+
+  esn:
+    image: tecnativa/tcp-proxy:latest
+    environment:
+      - LISTEN= :8080
+      - TALK= 172.99.0.1:8080
+    healthcheck:
+      test: ["CMD", "nc", "-z", "-v", "-w5", "localhost", "8080"]
+      interval: 2s
+      timeout: 2s
+      retries: 3
+      start_period: 3s
+
+  esn-init:
+    environment:
+      - WAITFORIT_TIMEOUT=600
+      - JAMES_SERVER_HOST=localhost
+      - JAMES_SERVER_PORT=25
+      - URL_JAMES_ADMIN_BACKEND=http://localhost:8000
+      - URL_LINSHARE_BACKEND=http://localhost:8080
+      - LDAP_CONNECTION_URI=ldap://localhost:389

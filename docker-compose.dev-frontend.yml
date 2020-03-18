@@ -1,0 +1,18 @@
+# vim: syntax=yaml textwidth=120 expandtab tabstop=2 softtabstop=2 shiftwidth=2 autoindent
+
+# Docker compose file for a full-featured ticketing08000linux architecture
+version: '3.7'
+
+services:
+
+  08000-frontend:
+    image: tecnativa/tcp-proxy:latest
+    environment:
+      - LISTEN= :80
+      - TALK= 172.99.0.1:8081
+    healthcheck:
+      test: ["CMD", "nc", "-z", "-v", "-w5", "localhost", "8081"]
+      interval: 2s
+      timeout: 2s
+      retries: 3
+      start_period: 3s
