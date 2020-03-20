@@ -23,6 +23,7 @@ By default, the version used is the latest stable release of the OpenPaaS produc
   + [Run Demo mode](#run-test-demo-mode)
   + [Preview mode](#preview-mode)
   + [Dev mode](#dev-mode)
+* [Quick start](#quick-start)
 
 
 ### Vhosts declaration
@@ -298,12 +299,102 @@ $ npm i
 $ npm run serve
 ```
 
-####  You are now ready to start playing!
+###  Quick start
 
-Your ESN can now be reached at the following address: http://backend.ticketing.local and ticketing08000linux instance is accessible at at the following address: http://frontend.ticketing.local.
+Once everything is running, you can start using ticketing08000linux [home page](http://frontend.ticketing.local).
 
-You can connect with the default admin user:
+Your ESN can now be browse to [backend.ticketing.local](http://backend.ticketing.local).
+
+You can connect with the default admin user :
 > Username: `admin@open-paas.org`
 > Password: `secret`
 
 You can also log in as any other demo user, user accounts are in the file `users.created.txt`.
+
+#### Types and Roles
+
+there is two type of user :
+
+- **Beneficiary** is a customer linked to a client and can create, see tickets
+- **Expert** is part of the team handling the ticket
+
+User roles are explain in the table :
+
+|          TYPE         |                 |             Beneficiary            |               Expert               | Admin OP |         |               |                |
+|:---------------------:|:---------------:|:----------------------------------:|:----------------------------------:|:--------:|:-------:|:-------------:|:--------------:|
+|          ROLE         |                 |               Viewer               |             Beneficiary            |  Expert  | Manager | Administrator | Platform Admin |
+|        TICKETS        |    List / Get   |                                    | Only those linked to its contracts |     ✔    |         |       ✔       |        ✔       |
+|                       |      Create     |                                    |                  ✔                 |     ✔    |         |       ✔       |        ✔       |
+|                       |      Update     |                                    |                  X                 |     X    |         |       ✔       |        ✔       |
+|                       |     Comment     |                                    |                  ✔                 |     ✔    |         |       ✔       |        ✔       |
+|                       | Comment private |                                    |                  X                 |     ✔    |         |       ✔       |        ✔       |
+|                       |     Archive     |                                    |                  X                 |     X    |         |       X       |        X       |
+|                       |                 |                                    |                                    |          |         |               |                |
+| USERS /TEAMS /CLIENTS |    List / Get   | Only those linked to its contracts | Only those linked to its contracts |     ✔    |         |       ✔       |        ✔       |
+|                       |      Create     |                                    |                  X                 |     X    |         |       ✔       |        ✔       |
+|                       |      Update     |                                    |                  X                 |     X    |         |       ✔       |        ✔       |
+|                       |      Delete     |                                    |                  X                 |     X    |         |       ✔       |        ✔       |
+|                       |                 |                                    |                                    |          |         |               |                |
+|       SOFTWARES       |    List / Get   | Only those linked to its contracts | Only those linked to its contracts |     ✔    |         |       ✔       |        ✔       |
+|                       |      Create     |                                    |                  X                 |     X    |         |       ✔       |        ✔       |
+|                       |      Update     |                                    |                  X                 |     X    |         |       ✔       |        ✔       |
+|                       |      Delete     |                                    |                  X                 |     X    |         |       ✔       |        ✔       |
+|                       |                 |                                    |                                    |          |         |               |                |
+|       CONTRACTS       |    List / Get   |         Only his contracts         |         Only his contracts         |     ✔    |         |       ✔       |        X       |
+|                       |      Create     |                                    |                  X                 |     X    |         |       ✔       |        X       |
+|                       |      Update     |                                    |                  X                 |     X    |         |       ✔       |        X       |
+|                       |      Delete     |                                    |                  X                 |     X    |         |       ✔       |        X       |
+|                       |                 |                                    |                                    |          |         |               |                |
+|        Profile        | Get own profile |                                    |                  ✔                 |     ✔    |         |       ✔       |        ✔       |
+
+#### Manually setup (Workflow to populate)
+
+You can setup the ticketing08000linux manually with the following guide:
+Browse to [administration page](http://frontend.ticketing.local/administration/) and log in using
+    - mail : **admin@open-paas.org**
+    - password : **secret**
+
+##### Create Software, Client, Contract
+
+1. Select **Software** &rarr; **create new software**
+    - Click on the '**+**' icon
+    - Fill the fields **Name**
+    - Hit **Create**
+2. Select **Clients** &rarr; **create new client**
+    - Click on the '**+**' icon
+    - Fill the fields **Name**
+    - Hit **Create**
+3. Select **Contracts** &rarr; **create new contracts**
+    - Click on the '**+**' icon
+    - Fill the field **Name**
+    - In **Client** choose the  **client created before**
+    - Fill fields **Timezone**, **Business hours**, **Start date** and **End date**
+    - Hit **Create**
+4. In **Contract detail** page,fill **Supported software**
+    - Click on the '**&#x270E;**' icon and on the '**+ ADD**' button
+    - Fill fields **Software**, **Start date**, **Critical**, **Version** and **OS**
+    - Hit **Create**
+5. Go back &#x2190; to the **Contract detail** page, fill each **Contractual commitments**
+    - Click on the '**&#x270E;**' icon and on the '**+ ADD**' button
+    - Fill fields **Request type**, **Severity**, **Ossa identifier** and **Treatment time range of Business hours**
+    - Hit **Create**
+
+##### Create User
+
+Select **Users** &rarr; **create new user**
+    - Click on the '**+**' icon
+    - Choose the field **Type**
+    - In the **Search users** field, found an LDAP user among this file `users.created.txt`.
+    - Choose the field **Role**
+    - If **Beneficiary** type &rarr; you need also to select **Client** and **Contracts**
+    - Hit **Create**
+
+
+##### Create Issue
+
+1. Browse to [home page](http://frontend.ticketing.local/)
+2. Select **New issue** in the menu
+    - Fill the field **Title**
+    - Select the  **Contract**
+    - Fill fields **Type**, **Software**, **Severity** and ***Description**
+    - Hit **Submit**
