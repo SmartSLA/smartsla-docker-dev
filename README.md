@@ -323,29 +323,29 @@ User roles are explain in the table :
 |          TYPE         |                 |             Beneficiary            |               Expert               | Admin OP |         |               |                |
 |:---------------------:|:---------------:|:----------------------------------:|:----------------------------------:|:--------:|:-------:|:-------------:|:--------------:|
 |          ROLE         |                 |               Viewer               |             Beneficiary            |  Expert  | Manager | Administrator | Platform Admin |
-|        TICKETS        |    List / Get   |                                    | Only those linked to its contracts |     ✔    |         |       ✔       |        ✔       |
-|                       |      Create     |                                    |                  ✔                 |     ✔    |         |       ✔       |        ✔       |
-|                       |      Update     |                                    |                  X                 |     X    |         |       ✔       |        ✔       |
-|                       |     Comment     |                                    |                  ✔                 |     ✔    |         |       ✔       |        ✔       |
-|                       | Comment private |                                    |                  X                 |     ✔    |         |       ✔       |        ✔       |
+|        TICKETS        |    List / Get   |                                    | Only those linked to its contracts |     ✓    |         |       ✓       |        ✓       |
+|                       |      Create     |                                    |                  ✓                 |     ✓    |         |       ✓       |        ✓       |
+|                       |      Update     |                                    |                  X                 |     X    |         |       ✓       |        ✓       |
+|                       |     Comment     |                                    |                  ✓                 |     ✓    |         |       ✓       |        ✓       |
+|                       | Comment private |                                    |                  X                 |     ✓    |         |       ✓       |        ✓       |
 |                       |     Archive     |                                    |                  X                 |     X    |         |       X       |        X       |
 |                       |                 |                                    |                                    |          |         |               |                |
-| USERS /TEAMS /CLIENTS |    List / Get   | Only those linked to its contracts | Only those linked to its contracts |     ✔    |         |       ✔       |        ✔       |
-|                       |      Create     |                                    |                  X                 |     X    |         |       ✔       |        ✔       |
-|                       |      Update     |                                    |                  X                 |     X    |         |       ✔       |        ✔       |
-|                       |      Delete     |                                    |                  X                 |     X    |         |       ✔       |        ✔       |
+| USERS /TEAMS /CLIENTS |    List / Get   | Only those linked to its contracts | Only those linked to its contracts |     ✓    |         |       ✓       |        ✓       |
+|                       |      Create     |                                    |                  X                 |     X    |         |       ✓       |        ✓       |
+|                       |      Update     |                                    |                  X                 |     X    |         |       ✓       |        ✓       |
+|                       |      Delete     |                                    |                  X                 |     X    |         |       ✓       |        ✓       |
 |                       |                 |                                    |                                    |          |         |               |                |
-|       SOFTWARES       |    List / Get   | Only those linked to its contracts | Only those linked to its contracts |     ✔    |         |       ✔       |        ✔       |
-|                       |      Create     |                                    |                  X                 |     X    |         |       ✔       |        ✔       |
-|                       |      Update     |                                    |                  X                 |     X    |         |       ✔       |        ✔       |
-|                       |      Delete     |                                    |                  X                 |     X    |         |       ✔       |        ✔       |
+|       SOFTWARES       |    List / Get   | Only those linked to its contracts | Only those linked to its contracts |     ✓    |         |       ✓       |        ✓       |
+|                       |      Create     |                                    |                  X                 |     X    |         |       ✓       |        ✓       |
+|                       |      Update     |                                    |                  X                 |     X    |         |       ✓       |        ✓       |
+|                       |      Delete     |                                    |                  X                 |     X    |         |       ✓       |        ✓       |
 |                       |                 |                                    |                                    |          |         |               |                |
-|       CONTRACTS       |    List / Get   |         Only his contracts         |         Only his contracts         |     ✔    |         |       ✔       |        X       |
-|                       |      Create     |                                    |                  X                 |     X    |         |       ✔       |        X       |
-|                       |      Update     |                                    |                  X                 |     X    |         |       ✔       |        X       |
-|                       |      Delete     |                                    |                  X                 |     X    |         |       ✔       |        X       |
+|       CONTRACTS       |    List / Get   |         Only his contracts         |         Only his contracts         |     ✓    |         |       ✓       |        X       |
+|                       |      Create     |                                    |                  X                 |     X    |         |       ✓       |        X       |
+|                       |      Update     |                                    |                  X                 |     X    |         |       ✓       |        X       |
+|                       |      Delete     |                                    |                  X                 |     X    |         |       ✓       |        X       |
 |                       |                 |                                    |                                    |          |         |               |                |
-|        Profile        | Get own profile |                                    |                  ✔                 |     ✔    |         |       ✔       |        ✔       |
+|        Profile        | Get own profile |                                    |                  ✓                 |     ✓    |         |       ✓       |        ✓       |
 
 #### Manually setup (Workflow to populate)
 
