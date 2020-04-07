@@ -5,6 +5,6 @@ window.openpaas = {
     name: "Linagora",
     color: "#d32f2f",
     logo: "logo.png"
-  }
-
+  },
+  LIMESURVEY_URL: "http://limesurvey.ticketing.local/index.php/"
 };
