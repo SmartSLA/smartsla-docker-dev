@@ -1,0 +1,33 @@
+# vim: syntax=yaml textwidth=120 expandtab tabstop=2 softtabstop=2 shiftwidth=2 autoindent
+
+# Docker compose file for a full-featured ticketing08000linux architecture
+version: '3.7'
+
+volumes:
+  postgres01:
+    driver: local
+  limesurvey01:
+    driver: local
+
+services:
+
+  pgsql:
+    image:
+      postgres:11
+    environment:
+      - POSTGRES_PASSWORD=limesurvey
+    volumes:
+      - "postgres01:/var/lib/postgresql/data"
+
+  limesurvey:
+    image:
+      crramirez/limesurvey:2
+    depends_on:
+      - pgsql
+    environment:
+      - DISABLE_MYSQL=yes
+    volumes:
+      - limesurvey01:/app/upload
+    labels:
+    - "traefik.enable=true"
+    - "traefik.openpaas.frontend.rule=Host:limesurvey.ticketing.local"

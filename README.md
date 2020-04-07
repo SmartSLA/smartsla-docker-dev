@@ -23,6 +23,12 @@ By default, the version used is the latest stable release of the OpenPaaS produc
   + [Run Demo mode](#run-test-demo-mode)
   + [Preview mode](#preview-mode)
   + [Dev mode](#dev-mode)
+* [Manually setup](#manually-setup)
+  + [Create Software, Client and Contract](#create-software,-client-and-contract)
+  + [Create User](#create-user)
+  + [Create Issue](#create-issue)
+  + [Types and Roles](#types-and-roles)
+  + [Limesurvey](#limesurvey)
 * [Quick start](#quick-start)
 
 
@@ -33,7 +39,7 @@ That way, accessing http://frontend.ticketing.local with your browser will resol
 
 Add the following into your `/etc/hosts` file:
 ```
-172.99.0.1      frontend.ticketing.local backend.ticketing.local
+172.99.0.1      frontend.ticketing.local backend.ticketing.local limesurvey.ticketing.local
 ```  
 
 ## How to use
@@ -299,17 +305,56 @@ $ npm i
 $ npm run serve
 ```
 
-###  Quick start
+### Manually setup
 
-Once everything is running, you can start using ticketing08000linux [home page](http://frontend.ticketing.local).
+You can setup the ticketing08000linux manually with the following guide:
+Browse to [administration page](http://frontend.ticketing.local/administration/) and log in using
+    - mail : **admin@open-paas.org**
+    - password : **secret**
 
-Your ESN can now be browse to [backend.ticketing.local](http://backend.ticketing.local).
+#### Create Software, Client and Contract
 
-You can connect with the default admin user :
-> Username: `admin@open-paas.org`
-> Password: `secret`
+1. Select **Software** &rarr; **create new software**
+    - Click on the '**+**' icon
+    - Fill the fields **Name**
+    - Hit **Create**
+2. Select **Clients** &rarr; **create new client**
+    - Click on the '**+**' icon
+    - Fill the fields **Name**
+    - Hit **Create**
+3. Select **Contracts** &rarr; **create new contracts**
+    - Click on the '**+**' icon
+    - Fill the field **Name**
+    - In **Client** choose the  **client created before**
+    - Fill fields **Timezone**, **Business hours**, **Start date** and **End date**
+    - Hit **Create**
+4. In **Contract detail** page,fill **Supported software**
+    - Click on the '**&#x270E;**' icon and on the '**+ ADD**' button
+    - Fill fields **Software**, **Start date**, **Critical**, **Version** and **OS**
+    - Hit **Create**
+5. Go back &#x2190; to the **Contract detail** page, fill each **Contractual commitments**
+    - Click on the '**&#x270E;**' icon and on the '**+ ADD**' button
+    - Fill fields **Request type**, **Severity**, **Ossa identifier** and **Treatment time range of Business hours**
+    - Hit **Create**
 
-You can also log in as any other demo user, user accounts are in the file `users.created.txt`.
+#### Create User
+
+Select **Users** &rarr; **create new user**
+    - Click on the '**+**' icon
+    - Choose the field **Type**
+    - In the **Search users** field, found an LDAP user among this file `users.created.txt`.
+    - Choose the field **Role**
+    - If **Beneficiary** type &rarr; you need also to select **Client** and **Contracts**
+    - Hit **Create**
+
+#### Create Issue
+
+1. Browse to [home page](http://frontend.ticketing.local/)
+2. Select **New issue** in the menu
+    - Fill the field **Title**
+    - Select the  **Contract**
+    - Fill fields **Type**, **Software**, **Severity** and ***Description**
+    - Hit **Submit**
 
 #### Types and Roles
 
@@ -347,54 +392,63 @@ User roles are explain in the table :
 |                       |                 |                                    |                                    |          |         |               |                |
 |        Profile        | Get own profile |                                    |                  ✓                 |     ✓    |         |       ✓       |        ✓       |
 
-#### Manually setup (Workflow to populate)
+#### Limesurvey
 
-You can setup the ticketing08000linux manually with the following guide:
-Browse to [administration page](http://frontend.ticketing.local/administration/) and log in using
-    - mail : **admin@open-paas.org**
-    - password : **secret**
+Once limesurvey and postgresql are running, you can start using limesurvey [home page](http://limesurvey.ticketing.local).
 
-##### Create Software, Client, Contract
+You can follow the [installation procedure for limesurvey 2.0](https://manual.limesurvey.org/Installation_procedure_for_limesurvey_2.0)
 
-1. Select **Software** &rarr; **create new software**
-    - Click on the '**+**' icon
-    - Fill the fields **Name**
-    - Hit **Create**
-2. Select **Clients** &rarr; **create new client**
-    - Click on the '**+**' icon
-    - Fill the fields **Name**
-    - Hit **Create**
-3. Select **Contracts** &rarr; **create new contracts**
-    - Click on the '**+**' icon
-    - Fill the field **Name**
-    - In **Client** choose the  **client created before**
-    - Fill fields **Timezone**, **Business hours**, **Start date** and **End date**
-    - Hit **Create**
-4. In **Contract detail** page,fill **Supported software**
-    - Click on the '**&#x270E;**' icon and on the '**+ ADD**' button
-    - Fill fields **Software**, **Start date**, **Critical**, **Version** and **OS**
-    - Hit **Create**
-5. Go back &#x2190; to the **Contract detail** page, fill each **Contractual commitments**
-    - Click on the '**&#x270E;**' icon and on the '**+ ADD**' button
-    - Fill fields **Request type**, **Severity**, **Ossa identifier** and **Treatment time range of Business hours**
-    - Hit **Create**
+1. Click Next until you reach the Database configuration screen
+2. Then enter the following in the field:
+    - Database type **PostgreSQL**
+    - Database location **pgsql**
+    - Database user **postgres**
+    - Database password **limesurvey**
+    - Database name **limesurvey** #Or whatever you like
+    - Table prefix **lime_** #Or whatever you like
+3. Activate [/admin/remotecontrol API](http://limesurvey.ticketing.local/admin/):
+    - Go in http://limesurvey.ticketing.local/index.php/admin/globalsettings page
+    - Select Interface tab
+    - Enable `Publish /admin/remotecontrol API` (rpc_publish_api: 1)
+4. Import survey:
+    - Go in http://limesurvey.ticketing.local/index.php/admin/survey/sa/newsurvey/tab/import
+    - Import survey : [limesurvey_survey_491487](./assets/conf/limesurvey/limesurvey_survey_491487.lss)
+5. Init survey participants, this will create a table in database specifc to the survey created :
+    - Click on **survey participants** button or go in this link: http://limesurvey.ticketing.local/index.php/admin/tokens/sa/index/surveyid/491487
+    - Hit **Initialise participant table**
+6. Active survey:
+    - Click on **active this suvey** button or go in this link: [active survey 491487](https://limesurvey.ticketing.local/index.php/admin/survey/sa/activate/surveyid/599313491487)
+    - Select params fields
+    - Hit **Save & active survey**
+6. Set limesurvey config (needed to use limesurvey API)
+    - Use Curl to set configuration:
+      ```
+      curl -X PUT -H 'Accept: application/json' -H 'Content-Type: application/json'  http://backend.ticketing.local/api/configurations?scope=platform -u "admin@open-paas.org:secret"  -d '[
+        {
+          "name": "ticketing08000linux.backend",
+          "configurations": [
+            {
+              "name": "limesurvey",
+              "value": {
+                "surveyId": 491487,
+                "apiUrl": "http://limesurvey.ticketing.local/index.php/admin/remotecontrol/",
+                "username": "admin",
+                "password": "password"
+              }
+            }
+          ]
+        }
+      ]'
+      ```
 
-##### Create User
+###  Quick start
 
-Select **Users** &rarr; **create new user**
-    - Click on the '**+**' icon
-    - Choose the field **Type**
-    - In the **Search users** field, found an LDAP user among this file `users.created.txt`.
-    - Choose the field **Role**
-    - If **Beneficiary** type &rarr; you need also to select **Client** and **Contracts**
-    - Hit **Create**
+Once everything is running, you can start using ticketing08000linux [home page](http://frontend.ticketing.local).
 
+Your ESN can now be browse to [backend.ticketing.local](http://backend.ticketing.local).
 
-##### Create Issue
+You can connect with the default admin user :
+> Username: `admin@open-paas.org`
+> Password: `secret`
 
-1. Browse to [home page](http://frontend.ticketing.local/)
-2. Select **New issue** in the menu
-    - Fill the field **Title**
-    - Select the  **Contract**
-    - Fill fields **Type**, **Software**, **Severity** and ***Description**
-    - Hit **Submit**
+You can also log in as any other demo user, user accounts are in the file `users.created.txt`.
