@@ -1,6 +1,6 @@
 # vim: syntax=yaml textwidth=120 expandtab tabstop=2 softtabstop=2 shiftwidth=2 autoindent
 
-# Docker compose file for a full-featured ticketing08000linux architecture
+# Docker compose file for a full-featured SmartSLA architecture
 version: '3.7'
 
 volumes:
@@ -80,17 +80,17 @@ services:
       - NETWORK_HOST=0.0.0.0
       - NODE_DATA=true
 
-  08000-frontend:
+  smartsla-frontend:
     image: docker-registry.linagora.com:5000/lps-releases/ticketing08000linux:1.6
     restart: always
     volumes:
-      - ./assets/conf/08000-frontend/openpaas.js:/var/www/ticketing/env/openpaas.js
+      - ./assets/conf/smartsla-frontend/openpaas.js:/var/www/smartsla/env/openpaas.js
     depends_on:
       - mongodb
       - esn
     labels:
       - "traefik.enable=true"
-      - "traefik.openpaas.frontend.rule=Host:frontend.ticketing.local"
+      - "traefik.openpaas.frontend.rule=Host:frontend.smartsla.local"
 
   esn:
     image: docker-registry.linagora.com:5000/lps-releases/ticketing08000linux.backend:1.6
@@ -125,7 +125,7 @@ services:
       - AMQP_PROTOCOL=amqp
       - AMQP_USERNAME=guest
       - AMQP_PASSWORD=guest
-      - WEB_HOST=backend.ticketing.local
+      - WEB_HOST=backend.smartsla.local
       - WEB_PORT=
       - ELASTICSEARCH_HOST=elasticsearch
       - ELASTICSEARCH_PORT=9200
@@ -133,7 +133,7 @@ services:
       - MAIL_BROWSER=false
     labels:
       - "traefik.enable=true"
-      - "traefik.openpaas.frontend.rule=Host:backend.ticketing.local"
+      - "traefik.openpaas.frontend.rule=Host:backend.smartsla.local"
       - "traefik.port=8080"
 
   esn-init:

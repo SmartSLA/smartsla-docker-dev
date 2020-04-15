@@ -1,6 +1,6 @@
 # vim: syntax=yaml textwidth=120 expandtab tabstop=2 softtabstop=2 shiftwidth=2 autoindent
 
-# Docker compose file for a full-featured ticketing08000linux architecture
+# Docker compose file for a full-featured SmartSLA architecture
 version: '3.7'
 
 volumes:
@@ -30,4 +30,4 @@ services:
       - limesurvey01:/app/upload
     labels:
     - "traefik.enable=true"
-    - "traefik.openpaas.frontend.rule=Host:limesurvey.ticketing.local"
+    - "traefik.openpaas.frontend.rule=Host:limesurvey.smartsla.local"

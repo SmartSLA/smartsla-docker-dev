@@ -1,6 +1,6 @@
 # vim: syntax=yaml textwidth=120 expandtab tabstop=2 softtabstop=2 shiftwidth=2 autoindent
 
-# Docker compose file for a full-featured ticketing08000linux architecture
+# Docker compose file for a full-featured SmartSLA architecture
 version: '3.7'
 
 services:

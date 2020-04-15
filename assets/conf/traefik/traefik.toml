@@ -11,7 +11,7 @@ defaultEntryPoints = ["http"]
 
 [Docker]
     endpoint = "tcp://docker-socket:2375"
-    domain = "ticketing.local"
+    domain = "smartsla.local"
     exposedByDefault = false
     swarmMode = false
     watch = true
