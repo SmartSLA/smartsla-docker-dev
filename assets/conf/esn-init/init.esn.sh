@@ -4,7 +4,7 @@ set -e
 # Add local env variables from esn-init-config configmap
 export NO_REPLY_ADDRESS_ESN=noreply@open-paas.org
 
-export URL_ESN=http://backend.ticketing.local
+export URL_ESN=http://backend.smartsla.local
 export SMTP_SERVER_HOST=${JAMES_SERVER_HOST:-james}
 export SMTP_SERVER_PORT=${JAMES_SERVER_PORT:-25}
 export LDAP_CONNECTION_URI=${LDAP_CONNECTION_URI:-ldap://ldap:389}

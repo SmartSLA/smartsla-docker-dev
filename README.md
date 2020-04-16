@@ -1,4 +1,4 @@
-# OpenPaaS ticketing08000linux
+# SmartSLA
 
 > Docker is available [here](https://www.docker.com/products/docker) and docker-compose [here](https://docs.docker.com/compose).
 > Make sure that these are installed on your system before starting. NB: you can
@@ -10,7 +10,7 @@ $ pip install docker-compose
 ```
 ## Presentation
 
-Deploy an ticketing08000linux base on OpenPaaS with ease using Docker and docker-compose.
+Deploy an SmartSLA base on OpenPaaS with ease using Docker and docker-compose.
 
 By default, the version used is the latest stable release of the OpenPaaS products, but you can also try the currently under-development version of components (activating the `preview` mode)
 
@@ -35,23 +35,30 @@ By default, the version used is the latest stable release of the OpenPaaS produc
 ### Vhosts declaration
 
 As there won't be any DNS resolving to your local environment, you must edit your /etc/hosts file to add new entries.
-That way, accessing http://frontend.ticketing.local with your browser will resolve to your local machine.
+That way, accessing http://frontend.smartsla.local with your browser will resolve to your local machine.
 
 Add the following into your `/etc/hosts` file:
 ```
-172.99.0.1      frontend.ticketing.local backend.ticketing.local limesurvey.ticketing.local
+172.99.0.1      frontend.smartsla.local backend.smartsla.local limesurvey.smartsla.local
 ```  
 
 ## How to use
 
 ### Clone this repository:
 ```bash
-$ git clone ssh://git@ci.linagora.com:7999/linagora/lgs/openpaas/ticketing-docker-dev.git
-$ cd ticketing-docker-dev
+$ git clone ssh://git@ci.linagora.com:7999/linagora/lgs/smartsla/smartsla-docker-dev.git
+    # or
+$ git clone https://github.com/smartsla/smartsla-docker-dev.git
+```
+
+Go into the project folder
+
+```bash
+$ cd smartsla-docker-dev
 ```
 
 ### Choose the portion of the platform you want to run:
-By default, the `docker-compose` commands will look for a file named `docker-compose.yml` in the current directory. In this repository, this will start the basic common services needed for an OpenPaaS ticketing08000linux (LDAP, OpenPaaS...) but will not start the whole platform, so you will be missing most interfaces and applications.
+By default, the `docker-compose` commands will look for a file named `docker-compose.yml` in the current directory. In this repository, this will start the basic common services needed for an SmartSLA (LDAP, OpenPaaS...) but will not start the whole platform, so you will be missing most interfaces and applications.
 
 This is meant to let you what part of the platform you want to run, since the whole platform can be quite heavy to run on a single machine.
 
@@ -135,12 +142,12 @@ The available modes are the following:
 * [`Preview`](#preview-mode): use the unreleased version of products, currently in development, instead of the latest stable released version
 * [`Development mode`](#development-mode): unplug one product of the platform from docker, to use your locally running development environment outside of docker
 
-Your ESN instance is accessible at the URL http://backend.ticketing.local
-Your ticketing08000linux instance is accessible at the URL http://frontend.ticketing.local
+Your ESN instance is accessible at the URL http://backend.smartsla.local
+Your SmartSLA instance is accessible at the URL http://frontend.smartsla.local
 
 ### Run Test Demo mode
 
-This mode allows you to use the recent released version of ticketing08000linux products.
+This mode allows you to use the recent released version of SmartSLA products.
 
 You need to export in your `COMPOSE_FILE` env the `docker-compose.yml`.
 Example of `.env` content with ESN:
@@ -148,10 +155,10 @@ Example of `.env` content with ESN:
 COMPOSE_FILE=docker-compose.yml
 ```
 
-That way, you get the recent released version of ticketing08000linux frontend and backend.
+That way, you get the recent released version of SmartSLA frontend and backend.
 
 ### Preview mode
-This mode allows you to use the most recent images of ticketing08000linux products, meaning the unreleased version currently under development.
+This mode allows you to use the most recent images of SmartSLA products, meaning the unreleased version currently under development.
 
 You need to export in your `COMPOSE_FILE` env the `docker-compose.preview.yml` **in addition to** the basic `docker-compose.yml`.
 Example of `.env` content with ESN:
@@ -159,12 +166,12 @@ Example of `.env` content with ESN:
 COMPOSE_FILE=docker-compose.yml:docker-compose.preview.yml
 ```
 
-That way, you get the most recent version of ticketing frontend and backend.
+That way, you get the most recent version of SmartSLA frontend and backend.
 
 
 ### Development mode
 
-To use dev mode, you need to export dev docker-compose, to add `backend` and `frontend` module, to create & start all containers, to configure ESN and ticketing08000linux to be able to run it  **in this order**:
+To use dev mode, you need to export dev docker-compose, to add `backend` and `frontend` module, to create & start all containers, to configure ESN and SmartSLA to be able to run it  **in this order**:
 
 You need to export in your `COMPOSE_FILE` env the `dev docker-compose`  for `backend` and `frontend`  **in addition to** the basic `docker-compose.esn.yml`
 Example of `.env` content with ESN:
@@ -178,7 +185,7 @@ That way, you get LDAP running in docker and a lightweight reverse-proxy instead
 
 #### Backend development mode
 
-To use dev mode, you need to export dev docker-compose, to add `ticketing08000linux.backend` module, to create & start all containers, to configure ESN and ticketing08000linux to be able to run it  **in this order**:
+To use dev mode, you need to export dev docker-compose, to add `smartsla-backend` module, to create & start all containers, to configure ESN and SmartSLA to be able to run it  **in this order**:
 
 1. You need to export in your `COMPOSE_FILE` env the `docker-compose.dev-backend.yml` **in addition to** the basic `docker-compose.esn.yml`
 Example of `.env` content with ESN:
@@ -188,28 +195,32 @@ COMPOSE_FILE=docker-compose.yml:docker-compose.dev-backend.yml
 
 That way, you get LDAP running in docker and a lightweight reverse-proxy instead of ESN, that forwards all trafic to your ESN nodejs server running locally.
 
-2. You need also to add `ticketing08000linux.backend` module locally.
+2. You need also to add `smartsla-backend` module locally.
 ```bash
 $ cd ../
-$ git clone ssh://git@ci.linagora.com:7999/linagora/lps/studio/ticketing08000linux.backend.git
-$ cd ticketing08000linux.backend
+$ git clone ssh://git@ci.linagora.com:7999/linagora/lgs/smartsla/smartsla-backend.git
+# or
+$ git clone https://github.com/smartsla/smartsla--backend.git
+$ cd smartsla-backend
 $ npm i
 ```
 
-3. You need to add `esn` locally and to create `ticketing08000linux.backend` symbolic link.
+3. You need to add `esn` locally and to create `smartsla-backend` symbolic link.
 ```bash
 $ cd ../
 $ git clone ssh://git@ci.linagora.com:7999/linagora/lgs/openpaas/esn.git
+# or
+$ git clone https://github.com/linagora/openpaas-esn.git
 $ cd esn
 $ npm i
 ```
 
 ```bash
 $ cd modules
-ln -s ../../ticketing08000linux.backend/ ticketing08000linux.backend
+ln -s ../../smartsla-backend/ smartsla-backend
 ```
 
-4. Declare  `ticketing08000linux.backend` module to esn modules list.
+4. Declare  `smartsla-backend` module to esn modules list.
 
 you will need to use a `default.dev.json` file, that specifies your modules list for development environment.To do that easily, you can simply run:
 ```
@@ -217,12 +228,12 @@ cd ../config
 cp default.json default.dev.json
 ```
 
-Add `ticketing08000linux.backend` to the modules list
+Add `smartsla-backend` to the modules list
 ```bash
   ...
   "modules": [
   ...,
-  "ticketing08000linux.backend"
+  "smartsla-backend"
   ],
   ...
 ```
@@ -255,7 +266,7 @@ $ node ./bin/cli platformadmin init --email "${CURRENT_DOMAIN_ADMIN}"
 > Only need to be done for the first time or after a `docker-compose down -v`
 
 
-7. Run ESN & ticketing08000linux.backend locally.
+7. Run ESN & smartsla-backend locally.
 
 Start the ESN server in development mode:
 
@@ -282,7 +293,7 @@ $ docker-compose up -d esn-init
 
 #### Frontend development mode
 
-To use dev mode, you need to export dev docker-compose, to add frontend `ticketing08000linux` module, to create & start all containers, to configure ESN and ticketing08000linux to be able to run it  **in this order**:
+To use dev mode, you need to export dev docker-compose, to add frontend `SmartSLA` module, to create & start all containers, to configure ESN and SmartSLA to be able to run it  **in this order**:
 
 1. You need to export in your `COMPOSE_FILE` env the `docker-compose.dev-frontend.yml` **in addition to** the basic `docker-compose.esn.yml`
 Example of `.env` content with ESN:
@@ -292,14 +303,16 @@ COMPOSE_FILE=docker-compose.yml:docker-compose.dev-frontend.yml
 
 That way, you get LDAP running in docker and a lightweight reverse-proxy instead of ESN, that forwards all trafic to your ESN nodejs server running locally.
 
-2. You need to add  frontend `ticketing08000linux` module locally.
+2. You need to add  `smartsla-frontend` module locally.
 ```bash
 $ cd ../
-$ git clone ssh://git@ci.linagora.com:7999/linagora/lps/studio/ticketing08000linux.git
+$ git clone ssh://git@ci.linagora.com:7999/linagora/lgs/smartsla/smartsla-git
+    # or
+$ git clone https://github.com/smartsla/smartsla-frontend.git
 $ npm i
 ```
 
-3. Start the frontend ticketing08000linux server in development mode:
+3. Start the frontend SmartSLA server in development mode:
 
 ```bash
 $ npm run serve
@@ -307,8 +320,8 @@ $ npm run serve
 
 ### Manually setup
 
-You can setup the ticketing08000linux manually with the following guide:
-Browse to [administration page](http://frontend.ticketing.local/administration/) and log in using
+You can setup the SmartSLA manually with the following guide:
+Browse to [administration page](http://frontend.smartsla.local/administration/) and log in using
     - mail : **admin@open-paas.org**
     - password : **secret**
 
@@ -349,7 +362,7 @@ Select **Users** &rarr; **create new user**
 
 #### Create Issue
 
-1. Browse to [home page](http://frontend.ticketing.local/)
+1. Browse to [home page](http://frontend.smartsla.local/)
 2. Select **New issue** in the menu
     - Fill the field **Title**
     - Select the  **Contract**
@@ -394,7 +407,7 @@ User roles are explain in the table :
 
 #### Limesurvey
 
-Once limesurvey and postgresql are running, you can start using limesurvey [home page](http://limesurvey.ticketing.local).
+Once limesurvey and postgresql are running, you can start using limesurvey [home page](http://limesurvey.smartsla.local).
 
 You can follow the [installation procedure for limesurvey 2.0](https://manual.limesurvey.org/Installation_procedure_for_limesurvey_2.0)
 
@@ -406,32 +419,32 @@ You can follow the [installation procedure for limesurvey 2.0](https://manual.li
     - Database password **limesurvey**
     - Database name **limesurvey** #Or whatever you like
     - Table prefix **lime_** #Or whatever you like
-3. Activate [/admin/remotecontrol API](http://limesurvey.ticketing.local/admin/):
-    - Go in http://limesurvey.ticketing.local/index.php/admin/globalsettings page
+3. Activate [/admin/remotecontrol API](http://limesurvey.smartsla.local/admin/):
+    - Go in http://limesurvey.smartsla.local/index.php/admin/globalsettings page
     - Select Interface tab
     - Enable `Publish /admin/remotecontrol API` (rpc_publish_api: 1)
 4. Import survey:
-    - Go in http://limesurvey.ticketing.local/index.php/admin/survey/sa/newsurvey/tab/import
+    - Go in http://limesurvey.smartsla.local/index.php/admin/survey/sa/newsurvey/tab/import
     - Import survey : [limesurvey_survey_491487](./assets/conf/limesurvey/limesurvey_survey_491487.lss)
 5. Init survey participants, this will create a table in database specifc to the survey created :
-    - Click on **survey participants** button or go in this link: http://limesurvey.ticketing.local/index.php/admin/tokens/sa/index/surveyid/491487
+    - Click on **survey participants** button or go in this link: http://limesurvey.smartsla.local/index.php/admin/tokens/sa/index/surveyid/491487
     - Hit **Initialise participant table**
 6. Active survey:
-    - Click on **active this suvey** button or go in this link: [active survey 491487](https://limesurvey.ticketing.local/index.php/admin/survey/sa/activate/surveyid/599313491487)
+    - Click on **active this suvey** button or go in this link: [active survey 491487](https://limesurvey.smartsla.local/index.php/admin/survey/sa/activate/surveyid/599313491487)
     - Select params fields
     - Hit **Save & active survey**
 6. Set limesurvey config (needed to use limesurvey API)
     - Use Curl to set configuration:
       ```
-      curl -X PUT -H 'Accept: application/json' -H 'Content-Type: application/json'  http://backend.ticketing.local/api/configurations?scope=platform -u "admin@open-paas.org:secret"  -d '[
+      curl -X PUT -H 'Accept: application/json' -H 'Content-Type: application/json'  http://backend.smartsla.local/api/configurations?scope=platform -u "admin@open-paas.org:secret"  -d '[
         {
-          "name": "ticketing08000linux.backend",
+          "name": "SmartSLA.backend",
           "configurations": [
             {
               "name": "limesurvey",
               "value": {
                 "surveyId": 491487,
-                "apiUrl": "http://limesurvey.ticketing.local/index.php/admin/remotecontrol/",
+                "apiUrl": "http://limesurvey.smartsla.local/index.php/admin/remotecontrol/",
                 "username": "admin",
                 "password": "password"
               }
@@ -443,9 +456,9 @@ You can follow the [installation procedure for limesurvey 2.0](https://manual.li
 
 ###  Quick start
 
-Once everything is running, you can start using ticketing08000linux [home page](http://frontend.ticketing.local).
+Once everything is running, you can start using SmartSLA [home page](http://frontend.smartsla.local).
 
-Your ESN can now be browse to [backend.ticketing.local](http://backend.ticketing.local).
+Your ESN can now be browse to [backend.smartsla.local](http://backend.smartsla.local).
 
 You can connect with the default admin user :
 > Username: `admin@open-paas.org`
