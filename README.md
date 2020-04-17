@@ -325,6 +325,12 @@ Browse to [administration page](http://frontend.smartsla.local/administration/) 
     - mail : **admin@open-paas.org**
     - password : **secret**
 
+#### Promote Admin user as SmartSLA admin
+
+1. Select **Roles** &rarr; **edit**
+    - In **Users** choose the  **admin**
+    - Hit **Add**
+
 #### Create Software, Client and Contract
 
 1. Select **Software** &rarr; **create new software**
