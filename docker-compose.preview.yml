@@ -6,7 +6,7 @@ version: '3.7'
 services:
 
   smartsla-frontend:
-    image: docker-registry.linagora.com:5000/lps-snapshots/ticketing08000linux:1.6
+    image: smartsla/smartsla-frontend:branch-master
 
   esn:
-    image: docker-registry.linagora.com:5000/lps-snapshots/ticketing08000linux.backend:1.6
+    image: smartsla/smartsla-backend:branch-master

@@ -49,7 +49,7 @@ services:
       - mongodb01:/data/db
 
   ldap:
-    image: docker-registry.linagora.com:5000/demo-snapshots/openpaas-ldap-demo:latest
+    image: linagora/openpaas-ldap:1.1
     tty: true
     stdin_open: true
     command: --copy-service --loglevel debug
@@ -137,7 +137,7 @@ services:
       - "traefik.port=8080"
 
   esn-init:
-    image: docker-registry.linagora.com:5000/openpaas-releases/openpaas-esncli:1.6
+    image: linagora/openpaas-esncli:1.6
     environment:
       - ESN_CLI_PASSWORD=secret
       - ESN_CLI_LOGIN=admin@open-paas.org
@@ -155,7 +155,7 @@ services:
       - esn
 
   ldap-init:
-    image: docker-registry.linagora.com:5000/openpaas-releases/openpaas-ldap-init:1.2.2
+    image: linagora/openpaas-ldap-init:1.2.2
     # build: ../openpaas-ldap-init-dockerfile
     depends_on:
       - ldap
