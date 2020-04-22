@@ -1,13 +1,5 @@
 # SmartSLA
 
-> Docker is available [here](https://www.docker.com/products/docker) and docker-compose [here](https://docs.docker.com/compose).
-> Make sure that these are installed on your system before starting. NB: you can
-> also install docker-compose using Python pip tool, see above :
-
-```bash
-# Using python package (you shoud use python virtualenv, cf virtualenvwrapper)
-$ pip install docker-compose
-```
 ## Presentation
 
 Deploy an SmartSLA base on OpenPaaS with ease using Docker and docker-compose.
@@ -18,9 +10,10 @@ By default, the version used is the latest stable release of the OpenPaaS produc
     You should never use it to run a production instance as it misses significant configurations to have your data secured and the produict sustainable.
 
 ## Table of contents
+* [Setup your environement](#setup-your-environement)
 * [How to use](#how-to-use)
 * [Available modes](#available-modes)
-  + [Run Demo mode](#run-test-demo-mode)
+  + [Demo mode](#demo-mode)
   + [Preview mode](#preview-mode)
   + [Dev mode](#dev-mode)
 * [Manually setup](#manually-setup)
@@ -30,7 +23,35 @@ By default, the version used is the latest stable release of the OpenPaaS produc
   + [Types and Roles](#types-and-roles)
   + [Limesurvey](#limesurvey)
 * [Quick start](#quick-start)
+* [Documentation](#documentation)
+* [User Feedback](#user-deedback)
 
+## Setup your environement
+
+### Docker & Docker-compose
+
+> Install the last stable version of [docker](https://docs.docker.com/install/#supported-platforms) && [docker-compose](https://docs.docker.com/compose/install/) following official documentation.
+> Make sure that these are installed on your system before starting. NB: you can
+> also install docker-compose using Python pip tool, see above :
+
+```bash
+# Using python package (you shoud use python virtualenv, cf virtualenvwrapper)
+$ pip install docker-compose
+```
+
+> Verify that you can execute docker commands as a non-root user, running:
+`docker run hello-world`
+If it doesn't work, see this documentation on [how to run docker as a non-root user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user).
+
+### Docker issue
+
+If root access is necessary for using docker, you are doing it wrong.
+
+It is better to add your user account to the `docker` group
+
+```bash
+$ sudo usermod -a -G docker $USER
+```
 
 ### Vhosts declaration
 
@@ -40,7 +61,18 @@ That way, accessing http://frontend.smartsla.local with your browser will resolv
 Add the following into your `/etc/hosts` file:
 ```
 172.99.0.1      frontend.smartsla.local backend.smartsla.local limesurvey.smartsla.local
-```  
+```
+
+### Generate JWT keys
+
+You need to gerate JWT keys :
+
+```bash
+$ ./assets/conf/jwt-keys/init.jwt.sh gen-jwt-keys <subject>
+# usage: gen-jwt-keys <subject>
+#        subject format : /C=FR/ST=French/L=Paris/O=Linagora/CN=smartsla.org
+# examples: gen-jwt-keys /C=FR/ST=French/L=Paris/O=Linagora/CN=smartsla.org
+```
 
 ## How to use
 
@@ -138,16 +170,16 @@ To activate a mode, your `COMPOSE_FILE` has to reference the following files, **
 2. `docker-compose.[mode].yml`, can't be used alone, they only override some part of the `docker-compose.yml`
 
 The available modes are the following:
-* [`Run, Test, Demo`](#run-test-demo-mode): use the released version of products
-* [`Preview`](#preview-mode): use the unreleased version of products, currently in development, instead of the latest stable released version
+* [`Demo`](#demo-mode): use the **released version** of products
+* [`Preview`](#preview-mode): use the **most recent images** meaning **unreleased version** of products, currently in development, instead of the latest stable released version
 * [`Development mode`](#development-mode): unplug one product of the platform from docker, to use your locally running development environment outside of docker
 
 Your ESN instance is accessible at the URL http://backend.smartsla.local
 Your SmartSLA instance is accessible at the URL http://frontend.smartsla.local
 
-### Run Test Demo mode
+### Demo mode
 
-This mode allows you to use the recent released version of SmartSLA products.
+This mode allows you to use the **recently released version** of SmartSLA products.
 
 You need to export in your `COMPOSE_FILE` env the `docker-compose.yml`.
 Example of `.env` content with ESN:
@@ -155,10 +187,10 @@ Example of `.env` content with ESN:
 COMPOSE_FILE=docker-compose.yml
 ```
 
-That way, you get the recent released version of SmartSLA frontend and backend.
+That way, you get the **recently released version** of SmartSLA frontend and backend.
 
 ### Preview mode
-This mode allows you to use the most recent images of SmartSLA products, meaning the unreleased version currently under development.
+This mode allows you to use the **most recent images** of SmartSLA products, meaning the **unreleased version** currently under development.
 
 You need to export in your `COMPOSE_FILE` env the `docker-compose.preview.yml` **in addition to** the basic `docker-compose.yml`.
 Example of `.env` content with ESN:
@@ -166,7 +198,7 @@ Example of `.env` content with ESN:
 COMPOSE_FILE=docker-compose.yml:docker-compose.preview.yml
 ```
 
-That way, you get the most recent version of SmartSLA frontend and backend.
+That way, you get the **most recent version** of SmartSLA frontend and backend.
 
 
 ### Development mode
@@ -471,3 +503,13 @@ You can connect with the default admin user :
 > Password: `secret`
 
 You can also log in as any other demo user, user accounts are in the file `users.created.txt`.
+
+### Documentation
+
+Official SmartSLA documentation is available here : [https://smartsla.github.io](https://smartsla.github.io).
+
+### User Feedback
+
+#### Issues
+
+If you have any problems or questions, please contact us through a [GitHub issue](https://github.com/SmartSLA/smartsla-docker-dev/issues).
