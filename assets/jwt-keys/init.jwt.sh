@@ -45,11 +45,10 @@ function gen-jwt-keys ()
         echo "ERROR: Missing JWT subject"
         exit 1
     fi
-    local l_private_key=./${ASSETS_FOLDER}/jwt-keys/private.pem
-    local l_public_key=./${ASSETS_FOLDER}/jwt-keys/public.pem
+    local l_private_key=./private.pem
+    local l_public_key=./public.pem
 
     echo "INFO: Generating JWT private and public keys for SmartSLA."
-    mkdir -p ./${ASSETS_FOLDER}/jwt-keys
     if [ -f ${l_private_key} -o -f ${l_public_key} ] ; then
         echo "ERROR: ${l_private_key} or ${l_public_key} already exists ! "
         echo "aborted."

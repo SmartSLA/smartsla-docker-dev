@@ -68,7 +68,7 @@ Add the following into your `/etc/hosts` file:
 You need to gerate JWT keys :
 
 ```bash
-$ ./assets/conf/jwt-keys/init.jwt.sh gen-jwt-keys <subject>
+$ ./assets/jwt-keys/init.jwt.sh gen-jwt-keys <subject>
 # usage: gen-jwt-keys <subject>
 #        subject format : /C=FR/ST=French/L=Paris/O=Linagora/CN=smartsla.org
 # examples: gen-jwt-keys /C=FR/ST=French/L=Paris/O=Linagora/CN=smartsla.org
