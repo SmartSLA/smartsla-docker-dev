@@ -63,19 +63,6 @@ Add the following into your `/etc/hosts` file:
 172.99.0.1      frontend.smartsla.local backend.smartsla.local limesurvey.smartsla.local
 ```
 
-### Generate JWT keys
-
-You need to gerate JWT keys :
-
-```bash
-$ ./assets/jwt-keys/init.jwt.sh gen-jwt-keys <subject>
-# usage: gen-jwt-keys <subject>
-#        subject format : /C=FR/ST=French/L=Paris/O=Linagora/CN=smartsla.org
-# examples: gen-jwt-keys /C=FR/ST=French/L=Paris/O=Linagora/CN=smartsla.org
-```
-
-## How to use
-
 ### Clone this repository:
 ```bash
 $ git clone ssh://git@ci.linagora.com:7999/linagora/lgs/smartsla/smartsla-docker-dev.git
@@ -88,6 +75,19 @@ Go into the project folder
 ```bash
 $ cd smartsla-docker-dev
 ```
+
+### Generate JWT keys
+
+You can to gerate JWT keys following this commande :
+
+```bash
+$ ./assets/jwt-keys/init.jwt.sh gen-jwt-keys <subject>
+# usage: gen-jwt-keys <subject>
+#        subject format : /C=FR/ST=French/L=Paris/O=Linagora/CN=smartsla.org
+# examples: gen-jwt-keys /C=FR/ST=French/L=Paris/O=Linagora/CN=smartsla.org
+```
+
+## How to use
 
 ### Choose the portion of the platform you want to run:
 By default, the `docker-compose` commands will look for a file named `docker-compose.yml` in the current directory. In this repository, this will start the basic common services needed for an SmartSLA (LDAP, OpenPaaS...) but will not start the whole platform, so you will be missing most interfaces and applications.
@@ -113,8 +113,8 @@ You are now all set!
 You can now use all the commands provided by the `docker-compose` tool.
 See: https://docs.docker.com/compose/reference/
 
-To access the platform, check the URL set up in section [Vhosts declaration](#vhosts-declaration).
-Test user accounts are in the file `users.created.txt`.
+>To access the platform, check the URL set up in section [Vhosts declaration](#vhosts-declaration).
+>Check user accounts are in the file `users.created.txt`.
 
 #### Basic docker-compose survival commands
 
@@ -353,6 +353,7 @@ $ npm run serve
 ### Manually setup
 
 You can setup the SmartSLA manually with the following guide:
+
 Browse to [administration page](http://frontend.smartsla.local/administration/) and log in using
     - mail : **admin@open-paas.org**
     - password : **secret**
@@ -499,8 +500,16 @@ Once everything is running, you can start using SmartSLA [home page](http://fron
 Your ESN can now be browse to [backend.smartsla.local](http://backend.smartsla.local).
 
 You can connect with the default admin user :
-> Username: `admin@open-paas.org`
-> Password: `secret`
+```
+Username: `admin@open-paas.org`
+Password: `secret`
+```
+
+> Don't forget to promote admin user as SmartSLA admin
+Browse to [administration page](http://frontend.smartsla.local/administration/) and log as admin
+Select **Roles** &rarr; **edit**
+    - In **Users** choose the  **admin**
+    - Hit **Add**
 
 You can also log in as any other demo user, user accounts are in the file `users.created.txt`.
 
