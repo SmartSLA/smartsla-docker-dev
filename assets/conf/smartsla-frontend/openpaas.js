@@ -6,5 +6,8 @@ window.openpaas = {
     color: "#d32f2f",
     logo: "logo.png"
   },
-  LIMESURVEY_URL: "http://limesurvey.smartsla.local/index.php/"
+  LIMESURVEY_URL: "http://limesurvey.smartsla.local/index.php/",
+  FEATURES: {
+    SSP_ENABLED: false
+  }
 };
