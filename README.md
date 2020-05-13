@@ -493,6 +493,13 @@ You can follow the [installation procedure for limesurvey 2.0](https://manual.li
       ]'
       ```
 
+#### Features configuration
+
+You can activate / deactivate features by editing [openpaas.js](https://ci.linagora.com/linagora/lgs/smartsla/smartsla-docker-dev/blob/master/assets/conf/smartsla-frontend/openpaas.js) file, here is the list of features:
+
+- **SSP_ENABLED** set to true to allow users to edit their passwords
+
+
 ###  Quick start
 
 Once everything is running, you can start using SmartSLA [home page](http://frontend.smartsla.local).
