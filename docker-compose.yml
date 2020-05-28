@@ -81,7 +81,7 @@ services:
       - NODE_DATA=true
 
   smartsla-frontend:
-    image: docker-registry.linagora.com:5000/lps-releases/ticketing08000linux:1.6
+    image: smartsla/smartsla-frontend:1.6
     restart: always
     volumes:
       - ./assets/conf/smartsla-frontend/openpaas.js:/var/www/smartsla/env/openpaas.js
@@ -93,7 +93,7 @@ services:
       - "traefik.openpaas.frontend.rule=Host:frontend.smartsla.local"
 
   esn:
-    image: docker-registry.linagora.com:5000/lps-releases/ticketing08000linux.backend:1.6
+    image: smartsla/smartsla-backend:1.6
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-s", "-f", "http://localhost:8080/api/monitoring"]
