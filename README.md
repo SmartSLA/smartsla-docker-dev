@@ -477,7 +477,7 @@ You can follow the [installation procedure for limesurvey 2.0](https://manual.li
       ```
       curl -X PUT -H 'Accept: application/json' -H 'Content-Type: application/json'  http://backend.smartsla.local/api/configurations?scope=platform -u "admin@open-paas.org:secret"  -d '[
         {
-          "name": "SmartSLA.backend",
+          "name": "smartsla-backend",
           "configurations": [
             {
               "name": "limesurvey",
