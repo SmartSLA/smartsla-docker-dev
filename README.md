@@ -287,7 +287,7 @@ $ export MONGO_HOST=localhost
 $ export AMQP_HOST=localhost
 $ export CURRENT_DOMAIN_ADMIN=admin@open-paas.org
 $
-$ node ./bin/cli.js db --host 172.17.0.1
+$ node ./bin/cli.js db --host 172.17.0.1 --db esn_docker
 $ node ./bin/cli configure
 $ node ./bin/cli elasticsearch --host $ELASTICSEARCH_HOST --port $ELASTICSEARCH_PORT
 $ node ./bin/cli domain create --email ${CURRENT_DOMAIN_ADMIN} --password secret --ignore-configuration
