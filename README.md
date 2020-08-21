@@ -60,7 +60,7 @@ That way, accessing http://frontend.smartsla.local with your browser will resolv
 
 Add the following into your `/etc/hosts` file:
 ```
-172.99.0.1      frontend.smartsla.local backend.smartsla.local limesurvey.smartsla.local
+172.99.0.1      frontend.smartsla.local backend.smartsla.local limesurvey.smartsla.local lininfosec.smartsla.local
 ```
 
 ### Clone this repository:
