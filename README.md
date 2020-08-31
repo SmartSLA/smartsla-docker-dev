@@ -504,22 +504,17 @@ SmartSLA can interface with [LinInfoSec](https://ci.linagora.com/linagora/lrs/os
 
 ```
 curl -X PUT -H 'Accept: application/json' -H 'Content-Type: application/json'  http://backend.smartsla.local/api/configurations?scope=platform -u "admin@open-paas.org:secret"  -d '[
-  {
-    "name": "smartsla-backend",
-    "configurations": [
-      {
-        "name": "lininfosec",
-        "value": {
-          "apiUrl": "http://lininfosec.smartsla.local/",
-        },
-      },
-      {
-        "name": "features",
-        "value": {
-          "isLinInfoSecEnabled": true
+{
+  "name": "smartsla-backend",
+  "configurations": [
+    {
+      "name": "features",
+      "value": {
+        "isLinInfoSecEnabled": true
       }
-    ]
-  }
+    }
+  ]
+}
 ]'
 ```
 
