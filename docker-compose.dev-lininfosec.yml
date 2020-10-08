@@ -1,0 +1,42 @@
+# vim: syntax=yaml textwidth=120 expandtab tabstop=2 softtabstop=2 shiftwidth=2 autoindent
+
+# Docker compose file for a full-featured SmartSLA architecture
+version: '3.7'
+
+volumes:
+  mariadb01:
+    driver: local
+  lininfosec01:
+    driver: local
+
+services:
+
+  mariadb_lininfosec:
+    image:
+      mariadb:10
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=lininfosecpw
+      - MYSQL_USER=lininfosec
+      - MYSQL_PASSWORD=lininfosecpw
+      - MYSQL_DATABASE=lininfosec
+    volumes: 
+      - mariadb01:/var/lib/mysql
+      - ./assets/conf/lininfosec-init/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+  lininfosec:
+    image:
+      lininfosec:latest
+    depends_on:
+      - mariadb_lininfosec
+    environment:
+      - LININFOSEC_MYSQL_DSN=lininfosec:lininfosecpw@tcp(mariadb_lininfosec)/lininfosec
+      - LININFOSEC_NOTIFICATION_ENDPOINT=backend.smartsla.local
+    volumes:
+      - lininfosec01:/data
+    ports:
+      - "9999:9999"
+    labels:
+    - "traefik.enable=true"
+    - "traefik.openpaas.frontend.rule=Host:lininfosec.smartsla.local"

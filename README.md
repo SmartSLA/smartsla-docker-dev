@@ -22,6 +22,7 @@ By default, the version used is the latest stable release of the OpenPaaS produc
   + [Create Issue](#create-issue)
   + [Types and Roles](#types-and-roles)
   + [Limesurvey](#limesurvey)
+  + [LinInfoSec](#lininfosec)
 * [Quick start](#quick-start)
 * [Documentation](#documentation)
 * [User Feedback](#user-deedback)
@@ -60,7 +61,7 @@ That way, accessing http://frontend.smartsla.local with your browser will resolv
 
 Add the following into your `/etc/hosts` file:
 ```
-172.99.0.1      frontend.smartsla.local backend.smartsla.local limesurvey.smartsla.local
+172.99.0.1      frontend.smartsla.local backend.smartsla.local limesurvey.smartsla.local lininfosec.smartsla.local
 ```
 
 ### Clone this repository:
@@ -472,7 +473,7 @@ You can follow the [installation procedure for limesurvey 2.0](https://manual.li
     - Click on **active this suvey** button or go in this link: [active survey 491487](https://limesurvey.smartsla.local/index.php/admin/survey/sa/activate/surveyid/599313491487)
     - Select params fields
     - Hit **Save & active survey**
-6. Set limesurvey config (needed to use limesurvey API)
+7. Set limesurvey config (needed to use limesurvey API)
     - Use Curl to set configuration:
       ```
       curl -X PUT -H 'Accept: application/json' -H 'Content-Type: application/json'  http://backend.smartsla.local/api/configurations?scope=platform -u "admin@open-paas.org:secret"  -d '[
@@ -492,6 +493,31 @@ You can follow the [installation procedure for limesurvey 2.0](https://manual.li
         }
       ]'
       ```
+
+#### LinInfoSec
+
+
+SmartSLA can interface with [LinInfoSec](https://ci.linagora.com/linagora/lrs/ossa/infosec/nvdtools/tree/master/cmd/lininfosec) to provide quick notifications for vulnerabilities publications. To use it, add the `docker-compose.dev-lininfosec.yml` to the `.env`
+
+
+- To enable it, use Curl to set configuration:
+
+```
+curl -X PUT -H 'Accept: application/json' -H 'Content-Type: application/json'  http://backend.smartsla.local/api/configurations?scope=platform -u "admin@open-paas.org:secret"  -d '[
+{
+  "name": "smartsla-backend",
+  "configurations": [
+    {
+      "name": "features",
+      "value": {
+        "isLinInfoSecEnabled": true
+      }
+    }
+  ]
+}
+]'
+```
+
 
 #### Features configuration
 
