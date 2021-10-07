@@ -32,7 +32,7 @@ services:
       - mariadb_lininfosec
     environment:
       - LININFOSEC_MYSQL_DSN=lininfosec:lininfosecpw@tcp(mariadb_lininfosec)/lininfosec
-      - LININFOSEC_NOTIFICATION_ENDPOINT=backend.smartsla.local
+      - LININFOSEC_NOTIFICATION_ENDPOINT=http://backend.smartsla.local/ticketing/api/lininfosec 
     volumes:
       - lininfosec01:/data
     ports:
