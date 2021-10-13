@@ -23,7 +23,8 @@ CREATE TABLE `cpe_dict` (
 	`targethw`   VARCHAR(128),
 	`other`      VARCHAR(128),
 	`language`   VARCHAR(128),
-	`title`      TEXT ,
+	`title`      TEXT,
+	`virtual`    BOOLEAN, -- Virtual CPE Added from SmartSla to complete NVD dictionary 
 	PRIMARY KEY (`uri`),
 	FULLTEXT INDEX (`title`)
 )
