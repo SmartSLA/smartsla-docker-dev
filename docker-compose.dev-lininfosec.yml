@@ -33,6 +33,8 @@ services:
     environment:
       - LININFOSEC_MYSQL_DSN=lininfosec:lininfosecpw@tcp(mariadb_lininfosec)/lininfosec
       - LININFOSEC_NOTIFICATION_ENDPOINT=http://backend.smartsla.local/ticketing/api/lininfosec 
+      - LININFOSEC_SMARTSLA_USERNAME=lininfosec
+      - LININFOSEC_SMARTSLA_USERPASSWORD=lininfosec
     volumes:
       - lininfosec01:/data
     ports:
