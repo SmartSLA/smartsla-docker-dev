@@ -27,7 +27,7 @@ services:
 
   lininfosec:
     image:
-      lininfosec:latest
+      lininfosec/lininfosec:latest
     depends_on:
       - mariadb_lininfosec
     environment:
