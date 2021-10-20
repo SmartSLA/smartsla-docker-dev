@@ -35,6 +35,7 @@ services:
       - LININFOSEC_NOTIFICATION_ENDPOINT=http://backend.smartsla.local/ticketing/api/lininfosec 
       - LININFOSEC_NOTIFICATION_USERNAME=lininfosec
       - LININFOSEC_NOTIFICATION_USERPASSWORD=lininfosec
+      - LININFOSEC_NOTIFICATION_CRON_DELAY=120   # in Minutes
     volumes:
       - lininfosec01:/data
     ports:
