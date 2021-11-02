@@ -15,7 +15,9 @@ By default, the version used is the latest stable release of the OpenPaaS produc
 * [Available modes](#available-modes)
   + [Demo mode](#demo-mode)
   + [Preview mode](#preview-mode)
-  + [Dev mode](#dev-mode)
+  + [Dev mode](#development-mode)
+    * [Frontend dev mode](#frontend-development-mode)
+    * [Backend dev mode](#backend-development-mode)
 * [Manually setup](#manually-setup)
   + [Create Software, Client and Contract](#create-software,-client-and-contract)
   + [Create User](#create-user)
@@ -348,7 +350,7 @@ $ npm i
 3. Start the frontend SmartSLA server in development mode:
 
 ```bash
-$ npm run serve
+$ npm run serve -- --port 8081
 ```
 
 ### Manually setup
