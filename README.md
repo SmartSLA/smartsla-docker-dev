@@ -488,7 +488,8 @@ You can follow the [installation procedure for limesurvey 2.0](https://manual.li
                 "surveyId": 491487,
                 "apiUrl": "http://limesurvey.smartsla.local/index.php/admin/remotecontrol/",
                 "username": "admin",
-                "password": "password"
+                "password": "password",
+                "limesurveyUrl": 'http://limesurvey.smartsla.local/'
               }
             }
           ]
