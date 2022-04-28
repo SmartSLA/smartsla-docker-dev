@@ -30,6 +30,29 @@ userPassword: {SHA}IIEvgL/u1NogagN37PEV40XhrgI=
 employeeType: Internal
 o: open-paas.org
 
+# dn: uid=amy.wolsh,ou=users,dc=openpaas,dc=org
+# objectClass: top
+# objectClass: person
+# objectClass: organizationalPerson
+# objectClass: inetOrgPerson
+# objectClass: PostfixBookMailAccount
+# objectClass: extensibleObject
+# uid: amy.wolsh
+# cn: WOLSH, Amy
+# mail: amy.wolsh@open-paas.org
+# sn: WOLSH
+# givenName: Amy
+# userPassword:: e1NIQX1JSUV2Z0wvdTFOb2dhZ04zN1BFVjQwWGhyZ0k9
+# employeeType: Internal
+# o: open-paas.org
+# entryUUID: 135b1b8c-5a76-103c-98d6-c54fc707ca91
+# mailEnabled: TRUE
+# mailGidNumber: 5000
+# mailHomeDirectory: /var/mail/amy.wolsh2@open-paas.org
+# mailQuota: 100000000000000000000000
+# mailStorageDirectory: maildir:/var/mail/amy.wolsh2@open-paas.org/Maildir
+# mailUidNumber: 5008
+
 dn: uid=anderson.waxman,ou=users,dc=openpaas,dc=org
 changetype: add
 objectClass: top

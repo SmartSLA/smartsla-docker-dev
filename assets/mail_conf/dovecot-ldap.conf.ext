@@ -1,0 +1,11 @@
+base = ou=users,dc=openpaas,dc=org
+default_pass_scheme = SSHA
+dn = cn=openpaas,ou=accounts,dc=openpaas,dc=org
+dnpass = openpaas
+hosts = ldap:389
+ldap_version        = 3
+auth_bind = yes
+pass_attrs          = uid=user,userPassword=password
+pass_filter         = (&(objectClass=PostfixBookMailAccount)(uid=%n))
+user_attrs          = mailHomeDirectory=home,mailUidNumber=uid,mailGidNumber=gid,mailStorageDirectory=mail
+user_filter         = (&(objectClass=PostfixBookMailAccount)(uid=%n))
