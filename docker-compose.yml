@@ -41,6 +41,7 @@ services:
     environment:
       - CONTAINERS=1
 
+
   mongodb:
     image: mongo:3.2
     restart: always
@@ -52,10 +53,13 @@ services:
     image: linagora/openpaas-ldap:1.1
     tty: true
     stdin_open: true
-    command: --copy-service --loglevel debug
+    hostname: ldap
+    command: --copy-service --loglevel debug && bash +x /linagora/ldifs/add-postfix-support.sh
     volumes:
       - ldap01:/var/lib/ldap
       - ldap02:/etc/ldap/slapd.d
+      - ./assets/conf/ldap-init/postfix.ldif:/linagora/ldifs/postfix.ldif
+      - ./assets/conf/ldap-init/add-postfix-support.sh:/linagora/ldifs/add-postfix-support.sh
 
   redis:
     image: redis:5.0.1-stretch
