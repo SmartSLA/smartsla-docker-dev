@@ -10,8 +10,10 @@ services:
     environment:
       - LISTEN= :80
       - TALK= 172.99.0.1:8081
+    ports:
+      - 28081:80
     healthcheck:
-      test: ["CMD", "nc", "-z", "-v", "-w5", "localhost", "8081"]
+      test: ["CMD", "nc", "-z", "-v", "-w5", "localhost", "80"]
       interval: 2s
       timeout: 2s
       retries: 3

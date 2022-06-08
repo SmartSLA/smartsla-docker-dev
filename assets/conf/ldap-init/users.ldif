@@ -5,6 +5,8 @@ objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
+objectClass: PostfixBookMailAccount
+objectClass: extensibleObject
 uid: abbey.curry
 cn: CURRY, Abbey
 mail: abbey.curry@open-paas.org
@@ -14,6 +16,12 @@ userPassword: {SHA}P3M95gvhsexXQGRzOMFRZDM69ZQ=
 employeeType: Internal
 o: open-paas.org
 mobile:0645566666
+mailEnabled: TRUE
+mailGidNumber: 5000
+mailHomeDirectory: /var/mail/abbey.curry@open-paas.org
+mailQuota: 100000000000000000000000
+mailStorageDirectory: maildir:/var/mail/abbey.curry@open-paas.org/Maildir
+mailUidNumber: 5001
 
 dn: uid=amy.wolsh,ou=users,dc=openpaas,dc=org
 changetype: add
@@ -21,6 +29,8 @@ objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
+objectClass: PostfixBookMailAccount
+objectClass: extensibleObject
 uid: amy.wolsh
 cn: WOLSH, Amy
 mail: amy.wolsh@open-paas.org
@@ -29,6 +39,12 @@ givenName: Amy
 userPassword: {SHA}IIEvgL/u1NogagN37PEV40XhrgI=
 employeeType: Internal
 o: open-paas.org
+mailEnabled: TRUE
+mailGidNumber: 5000
+mailHomeDirectory: /var/mail/amy.wolsh@open-paas.org
+mailQuota: 100000000000000000000000
+mailStorageDirectory: maildir:/var/mail/amy.wolsh@open-paas.org/Maildir
+mailUidNumber: 5002
 
 # dn: uid=amy.wolsh,ou=users,dc=openpaas,dc=org
 # objectClass: top
@@ -51,7 +67,7 @@ o: open-paas.org
 # mailHomeDirectory: /var/mail/amy.wolsh2@open-paas.org
 # mailQuota: 100000000000000000000000
 # mailStorageDirectory: maildir:/var/mail/amy.wolsh2@open-paas.org/Maildir
-# mailUidNumber: 5008
+# mailUidNumber: 5003
 
 dn: uid=anderson.waxman,ou=users,dc=openpaas,dc=org
 changetype: add
@@ -59,6 +75,8 @@ objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
+objectClass: PostfixBookMailAccount
+objectClass: extensibleObject
 uid: anderson.waxman
 cn: WAXMAN, Anderson
 mail: anderson.waxman@open-paas.org
@@ -67,6 +85,12 @@ givenName: Anderson
 userPassword: {SHA}5/wnc3RZ/ghrkJZKIstBfOV+Nw0=
 employeeType: Internal
 o: open-paas.org
+mailEnabled: TRUE
+mailGidNumber: 5000
+mailHomeDirectory: /var/mail/anderson.waxman@open-paas.org
+mailQuota: 100000000000000000000000
+mailStorageDirectory: maildir:/var/mail/anderson.waxman@open-paas.org/Maildir
+mailUidNumber: 5004
 
 dn: uid=cornell.able,ou=users,dc=openpaas,dc=org
 changetype: add
@@ -74,6 +98,8 @@ objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
+objectClass: PostfixBookMailAccount
+objectClass: extensibleObject
 uid: cornell.able
 cn: ABLE, Cornell
 mail: cornell.able@open-paas.org
@@ -82,6 +108,12 @@ givenName: Cornell
 userPassword: {SHA}Aa+9jm2ydaDo3qgQ7pyhkz9iXf8=
 employeeType: Internal
 o: open-paas.org
+mailEnabled: TRUE
+mailGidNumber: 5000
+mailHomeDirectory: /var/mail/cornell.able@open-paas.org
+mailQuota: 100000000000000000000000
+mailStorageDirectory: maildir:/var/mail/cornell.able@open-paas.org/Maildir
+mailUidNumber: 5005
 
 dn: uid=dawson.waterfield,ou=users,dc=openpaas,dc=org
 changetype: add
@@ -89,6 +121,8 @@ objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
+objectClass: PostfixBookMailAccount
+objectClass: extensibleObject
 uid: dawson.waterfield
 cn: WATERFIELD, Dawson
 mail: dawson.waterfield@open-paas.org
@@ -97,6 +131,12 @@ givenName: Dawson
 userPassword: {SHA}exytAM1Rm/tttZqwA3/eJPlDGFs=
 employeeType: Internal
 o: open-paas.org
+mailEnabled: TRUE
+mailGidNumber: 5000
+mailHomeDirectory: /var/mail/dawson.waterfield@open-paas.org
+mailQuota: 100000000000000000000000
+mailStorageDirectory: maildir:/var/mail/dawson.waterfield@open-paas.org/Maildir
+mailUidNumber: 5006
 
 dn: uid=felton.gumper,ou=users,dc=openpaas,dc=org
 changetype: add
@@ -104,6 +144,8 @@ objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
+objectClass: PostfixBookMailAccount
+objectClass: extensibleObject
 uid: felton.gumper
 cn: GUMPER, Felton
 mail: felton.gumper@open-paas.org
@@ -112,6 +154,12 @@ givenName: Felton
 userPassword: {SHA}negdcKkkwtzduTFBc5nrqX3aDko=
 employeeType: Internal
 o: open-paas.org
+mailEnabled: TRUE
+mailGidNumber: 5000
+mailHomeDirectory: /var/mail/felton.gumper@open-paas.org
+mailQuota: 100000000000000000000000
+mailStorageDirectory: maildir:/var/mail/felton.gumper@open-paas.org/Maildir
+mailUidNumber: 5007
 
 dn: uid=grant.big,ou=users,dc=openpaas,dc=org
 changetype: add
@@ -119,6 +167,8 @@ objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
+objectClass: PostfixBookMailAccount
+objectClass: extensibleObject
 uid: grant.big
 cn: BIG, Grant
 mail: grant.big@open-paas.org
@@ -127,6 +177,12 @@ givenName: Grant
 userPassword: {SHA}0eN1ZyfPmbJvMbKQvyl4gTlvuYQ=
 employeeType: Internal
 o: open-paas.org
+mailEnabled: TRUE
+mailGidNumber: 5000
+mailHomeDirectory: /var/mail/grant.big@open-paas.org
+mailQuota: 100000000000000000000000
+mailStorageDirectory: maildir:/var/mail/grant.big@open-paas.org/Maildir
+mailUidNumber: 5008
 
 dn: uid=nick.derbies,ou=users,dc=openpaas,dc=org
 changetype: add
@@ -134,6 +190,8 @@ objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
+objectClass: PostfixBookMailAccount
+objectClass: extensibleObject
 uid: nick.derbies
 cn: DERBIES, Nick
 mail: nick.derbies@open-paas.org
@@ -142,6 +200,12 @@ givenName: Nick
 userPassword: {SHA}HBloeyUJiHFgGtL3Iot7I0cuUVg=
 employeeType: Internal
 o: open-paas.org
+mailEnabled: TRUE
+mailGidNumber: 5000
+mailHomeDirectory: /var/mail/nick.derbies@open-paas.org
+mailQuota: 100000000000000000000000
+mailStorageDirectory: maildir:/var/mail/nick.derbies@open-paas.org/Maildir
+mailUidNumber: 5009
 
 dn: uid=peter.wilson,ou=users,dc=openpaas,dc=org
 changetype: add
@@ -149,6 +213,8 @@ objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
+objectClass: PostfixBookMailAccount
+objectClass: extensibleObject
 uid: peter.wilson
 cn: WILSON, Peter
 mail: peter.wilson@open-paas.org
@@ -157,6 +223,13 @@ givenName: Peter
 userPassword: {SHA}k35G7U/4g7C5SKoHUccqt4L/xxc=
 employeeType: Internal
 o: open-paas.org
+mailEnabled: TRUE
+mailGidNumber: 5000
+mailHomeDirectory: /var/mail/peter.wilson@open-paas.org
+mailQuota: 100000000000000000000000
+mailStorageDirectory: maildir:/var/mail/peter.wilson@open-paas.org/Maildir
+mailUidNumber: 5010
+
 
 dn: uid=walker.mccallister,ou=users,dc=openpaas,dc=org
 changetype: add
@@ -164,6 +237,8 @@ objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
+objectClass: PostfixBookMailAccount
+objectClass: extensibleObject
 uid: walker.mccallister
 cn: MCCALLISTER, Walker
 mail: walker.mccallister@open-paas.org
@@ -172,6 +247,12 @@ givenName: Walker
 userPassword: {SHA}y7OCxqySBPlreIDIRoMOSUTaBS0=
 employeeType: Internal
 o: open-paas.org
+mailEnabled: TRUE
+mailGidNumber: 5000
+mailHomeDirectory: /var/mail/walker.mccallister@open-paas.org
+mailQuota: 100000000000000000000000
+mailStorageDirectory: maildir:/var/mail/walker.mccallister@open-paas.org/Maildir
+mailUidNumber: 5011
 
 dn: uid=lininfosec,ou=users,dc=openpaas,dc=org
 changetype: add
@@ -179,6 +260,8 @@ objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
+objectClass: PostfixBookMailAccount
+objectClass: extensibleObject
 uid: lininfosec
 cn: Lininfosec
 mail: lininfosec@open-paas.org
@@ -187,3 +270,9 @@ givenName: Lininfosec
 userPassword: {SSHA}knnSxz8DwxwJh+V0dg4O1/yey4DxhXAH
 employeeType: Internal
 o: open-paas.org
+mailEnabled: TRUE
+mailGidNumber: 5000
+mailHomeDirectory: /var/mail/lininfosec@open-paas.org
+mailQuota: 100000000000000000000000
+mailStorageDirectory: maildir:/var/mail/lininfosec@open-paas.org/Maildir
+mailUidNumber: 5012

@@ -50,16 +50,16 @@ services:
       - mongodb01:/data/db
 
   ldap:
-    image: linagora/openpaas-ldap:1.1
+    image: linagora/openpaas-ldap:1.1.1
     tty: true
     stdin_open: true
     hostname: ldap
-    command: --copy-service --loglevel debug && bash +x /linagora/ldifs/add-postfix-support.sh
+    command: --copy-service --loglevel debug
     volumes:
       - ldap01:/var/lib/ldap
       - ldap02:/etc/ldap/slapd.d
-      - ./assets/conf/ldap-init/postfix.ldif:/linagora/ldifs/postfix.ldif
-      - ./assets/conf/ldap-init/add-postfix-support.sh:/linagora/ldifs/add-postfix-support.sh
+    ports:
+      - 1389:1389
 
   redis:
     image: redis:5.0.1-stretch
