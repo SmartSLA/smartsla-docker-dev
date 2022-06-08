@@ -59,7 +59,7 @@ services:
       - ldap01:/var/lib/ldap
       - ldap02:/etc/ldap/slapd.d
     ports:
-      - 1389:1389
+      - 1389:389
 
   redis:
     image: redis:5.0.1-stretch
