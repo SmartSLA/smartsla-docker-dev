@@ -25,6 +25,7 @@ By default, the version used is the latest stable release of the OpenPaaS produc
   + [Types and Roles](#types-and-roles)
   + [Limesurvey](#limesurvey)
   + [LinInfoSec](#lininfosec)
+  + [Roundcube Webmail](#roundcube-webmail)
 * [Quick start](#quick-start)
 * [Documentation](#documentation)
 * [User Feedback](#user-deedback)
@@ -63,7 +64,7 @@ That way, accessing http://frontend.smartsla.local with your browser will resolv
 
 Add the following into your `/etc/hosts` file:
 ```
-172.99.0.1      frontend.smartsla.local backend.smartsla.local limesurvey.smartsla.local lininfosec.smartsla.local
+172.99.0.1      frontend.smartsla.local backend.smartsla.local limesurvey.smartsla.local lininfosec.smartsla.local webmail.smartsla.local
 ```
 
 ### Clone this repository:
@@ -521,6 +522,12 @@ curl -X PUT -H 'Accept: application/json' -H 'Content-Type: application/json'  h
 ]'
 ```
 
+#### Roundcube Webmail
+
+Your Roundcube webmail can now be browse to [webmail.smartsla.local](http://webmail.smartsla.local).
+
+>To access the platform, check the URL set up in section [Vhosts declaration](#vhosts-declaration).
+>Check user accounts are in the file `users.created.txt`.
 
 #### Features configuration
 
